@@ -1,0 +1,114 @@
+Detome Postmortem (Spring 2011)
+
+This is for my entry in the Spring Lisp Game Jam 2011. I've been
+following the Lisp Games community for awhile, originally discovering
+it through David O'Toole's great blog. Working with Common Lisp for a
+few years after being influenced by some of Paul Graham's essays, I've
+built some various small projects and some medium-sized projects such
+as raytracers and a website with hunchentoot.
+
+* Design
+
+  This was the first “serious” game I've attempted in Common Lisp and
+  the code-base may reflect this as it is badly in need of some
+  refactoring. I've been gradually working on it off and on for awhile
+  now since I built the engine from scratch using lispbuilder-sdl as
+  the graphics framework and ended up implementing most of the
+  requirements that go into a 2d game engine. This is fortunately
+  split from the actual Detome codebase in it's own package. I then
+  set out to make a simple roguelike game.
+  
+  I tend to be more interested in the technology than the gameplay
+  itself so my first endeavor was to work out the technical mechanics
+  of the game itself. I put together the traditional grid-based
+  roguelike game world with a simple lighting and line-of-sight
+  algorithm. I then added some monsters and some simple fighting
+  mechanics. At this point the game was starting to come together but
+  I really had no idea where I wanted to take the actual gameplay or
+  what novel idea if any I wanted to implement in the game.
+  
+  It was around this point where I lost the initial interest in the
+  project and moved on to something else that seemed more
+  exciting. The itch had been scratched but fortunately the game was
+  complete enough that I kept coming back and adding features here and
+  there such as procedurally-generated outdoor environments but it
+  still really had no direction.
+  
+* Spring Lisp Game Jam 2011
+
+  I saw this as a great opportunity to actually begin thinking about
+  where I wanted to take this game. Up to this point it was more of a
+  technical demonstration in my mind and really didn't represent a
+  “game”.
+  
+  I began thinking about what would make the game simple, fun, and
+  could be reasonably completed in a week. I considered a system where
+  the player would kill monsters to collect different types of “orbs”
+  which could then be traded in for different boons to their
+  character. I also wanted to take some time to get the project
+  running in Windows and perhaps build an executable since this has
+  been something I've always put off doing.
+  
+  To accomplish these ideas I settled on the following three tasks
+  that I wanted to make progress on by the end of the week:
+  - Make the project work in Windows
+  - Get some simple cave/dungeon generation working
+  - Develop “trader” dynamics
+    
+  Unfortunately I was on a week-long business trip but I didn't let
+  that stop me from attempting to make as much progress on this as I
+  could.
+    
+  I started off with attempting to build in Windows since I believed
+  this would be the easiest task. I started off installing CLISP,
+  finding the SDL dlls, and using quicklisp and asdf to build the
+  project. All seemed to go well including the compilation finishing
+  without a hitch. I then tried running the game and it would run
+  perfectly for a couple seconds but then I would get an odd
+  lower-level seg-fault outside of clisp (possibly in
+  SDL?). Unfortunately the seg-fault pop-up dialog displayed no
+  meaningful information so I decided to drop this for the time-being
+  and move on to the next task.
+  
+  I had some simple cave generation functions half written before
+  starting this week and so I finished those up and managed to get
+  some decent randomized caves. One problem with them currently is
+  that algorithm results in a lot of dead-end hallways that quickly
+  because tedious. In the future I will definitely be improving this
+  or possibly just making this one type of a variety of cave/dungeon
+  types.
+  
+  The caves themselves are hidden at random spots in the mountain
+  regions in the outdoor world and must be searched for. The caves
+  also have stairs up and down that currently work but deeper dungeons
+  are not currently any more difficult than upper dungeons.
+  
+  The final task I wanted to finish was a “trader” system where the
+  player can trade in a combination or collected orbs for character
+  bonuses to attack, damage, health, etc. I ended up placing trader
+  objects around the map in the open fields that randomly select from
+  a set of predefined trades the player may utilize. This system seems
+  to work well but needs to be more balanced.
+  
+* Conclusion and Things learned
+  
+  Of course I still have a variety of things I want to add to this
+  game. The good thing is at this point it's far enough along that I
+  won't simply drop it. There are now some promising systems in the
+  game that are just fun enough that I feel could be made really
+  interesting with further effort. Right now the game is too tedious
+  and unbalanced to really be played for long in its current
+  state. Also there is no way to continue or finish the game. With
+  incremental improvements though I can see a possible endpoint. I'll
+  have to put together a long TODO list that will help me get there.
+  
+  What I enjoyed most about this Game Jam was the added pressure
+  created by registering and needing to work throughout the week and
+  plan on what I wanted to accomplish. Knowing there are others out
+  there who are doing the same creates a good spirit of community. All
+  said and done, I mostly just felt this was a great opportunity to
+  plan for and make some solid progress on something I feel passionate
+  about, and have a lot of fun along the way.
+
+
+  comments and feedback are definitely welcome..
